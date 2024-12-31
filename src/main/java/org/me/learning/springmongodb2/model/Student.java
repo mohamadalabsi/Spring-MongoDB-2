@@ -1,6 +1,8 @@
 package org.me.learning.springmongodb2.model;
 
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -11,8 +13,12 @@ import java.util.List;
 @Document(collection = "student")
 public class Student {
 
+    @Id
+    private String id; // this one is auto generated in mongoDB
     private String firstName;
     private String lastName;
+//    i want to make the email field unique
+    @Indexed(unique = true)
     private String email;
     private Gender gender;
     private Address address;
